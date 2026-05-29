@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Clone</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="layout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-box">
+                <div class="logo">
+                    <i class="fab fa-spotify" style="color: #1DB954; font-size: 24px;"></i>
+                    Spotify
+                </div>
+                <div class="sidebar-nav">
+                    <div class="sidebar-link active" id="nav-home" data-target="home"><i class="fas fa-home"></i> Home</div>
+                    <div class="sidebar-link" id="nav-search" data-target="search"><i class="fas fa-search"></i> Search</div>
+                </div>
+            </div>
+            <div class="sidebar-box sidebar-bottom-box">
+                <div class="library-header">
+                    <div class="sidebar-link" style="padding: 0; color: var(--text-subdued);"><i class="fas fa-book-open"></i> Your Library</div>
+                    <i class="fas fa-plus" style="color: var(--text-subdued); cursor: pointer; font-size: 16px;"></i>
+                </div>
+                <div class="library-pills">
+                    <div class="pill active">Playlists</div>
+                    <div class="pill">Artists</div>
+                    <div class="pill">Albums</div>
+                </div>
+                <div class="sidebar-playlist-list custom-scrollbar" id="sidebar-playlists">
+                    <p style="text-align: center; color: var(--text-subdued); margin-top: 20px; font-size: 14px;">Loading...</p>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main View -->
+        <main class="main-view custom-scrollbar">
+            <!-- Topbar with Search -->
+            <header class="topbar">
+                <div class="search-container">
+                    <i class="fas fa-search" style="color: var(--text-subdued);"></i>
+                    <input type="text" id="searchInput" placeholder="What do you want to listen to?">
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content">
+                <!-- Home View -->
+                <div id="view-home" class="page-view">
+                    <div id="home-content">
+                        <p style="grid-column: 1/-1; text-align: center; color: var(--text-subdued); margin-top: 40px;">Loading Home...</p>
+                    </div>
+                </div>
+
+                <!-- Search View (Hidden by default) -->
+                <div id="view-search" class="page-view" style="display: none;">
+                    <h2 class="section-title">Top Results</h2>
+                    <div id="results" class="cards-grid"></div>
+                </div>
+
+                <!-- Library View (Hidden by default) -->
+                <div id="view-library" class="page-view" style="display: none;">
+                    <h2 class="section-title">Browse by Genre & Mood</h2>
+                    <div id="library-content" class="cards-grid">
+                        <p style="grid-column: 1/-1; text-align: center; color: var(--text-subdued); margin-top: 40px;">Loading Categories...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
