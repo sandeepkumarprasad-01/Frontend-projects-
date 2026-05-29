@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spotify Web Player - Stream music, podcasts, and playlists online.">
+    <title>Spotify - Web Player</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sp-green': '#1DB954',
+                        'sp-green-light': '#1ED760',
+                        'sp-black': '#121212',
+                        'sp-dark': '#181818',
+                        'sp-gray': '#282828',
+                        'sp-light-gray': '#B3B3B3',
+                        'sp-surface': '#242424',
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-sp-black text-white overflow-hidden h-screen flex flex-col select-none" style="font-family:'Inter',sans-serif;">
+
+    <div class="flex flex-1 overflow-hidden">
+
+        <!-- ========== LEFT SIDEBAR ========== -->
+        <aside class="w-[280px] flex-shrink-0 flex-col bg-black overflow-hidden hidden md:flex">
+            <div class="p-6 pb-4">
+                <a href="#" class="flex items-center gap-2 group">
+                    <svg class="w-8 h-8 text-white group-hover:text-sp-green transition-colors duration-300" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                    <span class="text-xl font-bold tracking-tight">Spotify</span>
+                </a>
+            </div>
+            <nav class="px-3 mb-2">
+                <ul class="space-y-1">
+                    <li><a href="#" class="nav-link active flex items-center gap-4 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.5 3.247a1 1 0 0 0-1 0L4 7.577V20h4.5v-6a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v6H20V7.577l-7.5-4.33zm-2-1.732a3 3 0 0 1 3 0l7.5 4.33a2 2 0 0 1 1 1.732V21a1 1 0 0 1-1 1h-6.5a1 1 0 0 1-1-1v-6h-3v6a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.577a2 2 0 0 1 1-1.732l7.5-4.33z"/></svg>Home</a></li>
+                    <li><a href="#" class="nav-link flex items-center gap-4 px-3 py-2.5 rounded-lg text-sm font-semibold text-sp-light-gray hover:text-white transition-all duration-200"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M10.533 1.279c-5.18 0-9.407 4.14-9.407 9.279s4.226 9.279 9.407 9.279c2.234 0 4.29-.77 5.907-2.058l4.353 4.353a1 1 0 1 0 1.414-1.414l-4.344-4.344a9.157 9.157 0 0 0 2.077-5.816c0-5.14-4.226-9.28-9.407-9.28zm-7.407 9.28c0-4.006 3.302-7.28 7.407-7.28s7.407 3.274 7.407 7.28-3.302 7.279-7.407 7.279-7.407-3.273-7.407-7.28z"/></svg>Search</a></li>
+                </ul>
+            </nav>
+            <div class="flex-1 mx-2 bg-sp-dark rounded-lg flex flex-col overflow-hidden mt-2">
+                <div class="p-4 pb-2">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2 text-sp-light-gray hover:text-white transition-colors cursor-pointer"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM16 4.866 20 7.17V20h-4V4.866zM7 3a1 1 0 0 0-1 1v17a1 1 0 1 0 2 0V4a1 1 0 0 0-1-1z"/></svg><span class="font-bold text-base">Your Library</span></div>
+                        <button class="w-8 h-8 flex items-center justify-center rounded-full text-sp-light-gray hover:text-white hover:bg-sp-gray transition-all duration-200"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16"><path d="M15.25 8a.75.75 0 0 1-.75.75H8.75v5.75a.75.75 0 0 1-1.5 0V8.75H1.5a.75.75 0 0 1 0-1.5h5.75V1.5a.75.75 0 0 1 1.5 0v5.75h5.75a.75.75 0 0 1 .75.75z"/></svg></button>
+                    </div>
+                    <div class="flex gap-2 mb-3 overflow-x-auto pb-1"><span class="filter-pill active">Playlists</span><span class="filter-pill">Artists</span><span class="filter-pill">Albums</span><span class="filter-pill">Podcasts</span></div>
+                </div>
+                <div class="flex-1 overflow-y-auto px-2 pb-2 custom-scrollbar">
+                    <a href="#" class="lib-item active"><div class="lib-img" style="background:linear-gradient(135deg,#4527a0,#7b1fa2);"><svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 16 16"><path d="M1.69 2A4.582 4.582 0 0 1 8 2.023 4.583 4.583 0 0 1 11.88.817h.002a4.618 4.618 0 0 1 3.782 3.65v.003a4.543 4.543 0 0 1-1.011 3.84L9.35 14.629a1.765 1.765 0 0 1-2.093.464 1.762 1.762 0 0 1-.605-.463L1.348 8.309A4.582 4.582 0 0 1 1.689 2z"/></svg></div><div class="lib-info"><div class="lib-title">Liked Songs</div><div class="lib-sub">Playlist • 342 songs</div></div><div class="eq-bars"><span></span><span></span><span></span></div></a>
+                    <a href="#" class="lib-item"><div class="lib-img"><img src="https://picsum.photos/seed/discover1/96/96" alt="Discover Weekly"></div><div class="lib-info"><div class="lib-title">Discover Weekly</div><div class="lib-sub">Playlist • Spotify</div></div></a>
+                    <a href="#" class="lib-item"><div class="lib-img"><img src="https://picsum.photos/seed/release2/96/96" alt="Release Radar"></div><div class="lib-info"><div class="lib-title">Release Radar</div><div class="lib-sub">Playlist • Spotify</div></div></a>
+                    <a href="#" class="lib-item"><div class="lib-img"><img src="https://picsum.photos/seed/dailym3/96/96" alt="Daily Mix 1"></div><div class="lib-info"><div class="lib-title">Daily Mix 1</div><div class="lib-sub">Playlist • Spotify</div></div></a>
+                    <a href="#" class="lib-item"><div class="lib-img"><img src="https://picsum.photos/seed/chill4/96/96" alt="Chill Vibes"></div><div class="lib-info"><div class="lib-title">Chill Vibes</div><div class="lib-sub">Playlist • 128 songs</div></div></a>
+                    <a href="#" class="lib-item"><div class="lib-img artist"><img src="https://picsum.photos/seed/weeknd5/96/96" alt="The Weeknd"></div><div class="lib-info"><div class="lib-title">The Weeknd</div><div class="lib-sub">Artist</div></div></a>
+                    <a href="#" class="lib-item"><div class="lib-img artist"><img src="https://picsum.photos/seed/drake6/96/96" alt="Drake"></div><div class="lib-info"><div class="lib-title">Drake</div><div class="lib-sub">Artist</div></div></a>
+                    <a href="#" class="lib-item"><div class="lib-img artist"><img src="https://picsum.photos/seed/dualipa7/96/96" alt="Dua Lipa"></div><div class="lib-info"><div class="lib-title">Dua Lipa</div><div class="lib-sub">Artist</div></div></a>
+                    <a href="#" class="lib-item"><div class="lib-img"><img src="https://picsum.photos/seed/workout8/96/96" alt="Workout Energy"></div><div class="lib-info"><div class="lib-title">Workout Energy</div><div class="lib-sub">Playlist • 96 songs</div></div></a>
+                    <a href="#" class="lib-item"><div class="lib-img"><img src="https://picsum.photos/seed/lofi9/96/96" alt="Lo-Fi Beats"></div><div class="lib-info"><div class="lib-title">Lo-Fi Beats</div><div class="lib-sub">Playlist • 200 songs</div></div></a>
+                    <a href="#" class="lib-item"><div class="lib-img"><img src="https://picsum.photos/seed/indie10/96/96" alt="Indie Anthems"></div><div class="lib-info"><div class="lib-title">Indie Anthems</div><div class="lib-sub">Playlist • 88 songs</div></div></a>
+                    <a href="#" class="lib-item"><div class="lib-img artist"><img src="https://picsum.photos/seed/taylor11/96/96" alt="Taylor Swift"></div><div class="lib-info"><div class="lib-title">Taylor Swift</div><div class="lib-sub">Artist</div></div></a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ========== MAIN CONTENT ========== -->
+        <main class="flex-1 overflow-y-auto custom-scrollbar rounded-lg m-2 md:ml-0 relative" style="background:linear-gradient(180deg,#1a1a2e 0%,#181818 40%);">
+            <header class="sticky top-0 z-30 px-4 md:px-6 py-4 flex items-center justify-between bg-transparent">
+                <div class="flex items-center gap-2">
+                    <button class="w-8 h-8 rounded-full bg-black/70 flex items-center justify-center hover:bg-black/90 transition-all opacity-50 cursor-not-allowed"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M11.03.47a.75.75 0 0 1 0 1.06L4.56 8l6.47 6.47a.75.75 0 1 1-1.06 1.06L2.44 8 9.97.47a.75.75 0 0 1 1.06 0z"/></svg></button>
+                    <button class="w-8 h-8 rounded-full bg-black/70 flex items-center justify-center hover:bg-black/90 transition-all opacity-50 cursor-not-allowed"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M4.97.47a.75.75 0 0 0 0 1.06L11.44 8l-6.47 6.47a.75.75 0 1 0 1.06 1.06L13.56 8 6.03.47a.75.75 0 0 0-1.06 0z"/></svg></button>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="#" class="hidden md:flex items-center gap-2 px-4 py-1.5 rounded-full border border-gray-500/50 text-sm font-semibold hover:border-white hover:scale-105 transition-all duration-200"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M4.995 8.745a.75.75 0 0 1 1.06 0L7.25 9.939V4a.75.75 0 0 1 1.5 0v5.94l1.195-1.195a.75.75 0 1 1 1.06 1.06L8 12.811l-3.005-3.006a.75.75 0 0 1 0-1.06z"/><path d="M1.75 14A1.75 1.75 0 0 0 3.5 15.75h9A1.75 1.75 0 0 0 14.25 14v-1.25a.75.75 0 0 0-1.5 0V14a.25.25 0 0 1-.25.25h-9A.25.25 0 0 1 3.25 14v-1.25a.75.75 0 0 0-1.5 0V14z"/></svg>Install App</a>
+                    <div class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center text-sm font-bold hover:scale-110 transition-all duration-300 shadow-lg shadow-purple-500/20 cursor-pointer">S</div>
+                </div>
+            </header>
+
+            <div class="px-4 md:px-6 pb-28">
+
+                <h1 class="text-3xl md:text-4xl font-extrabold mb-6 tracking-tight">Good evening</h1>
+
+                <!-- ★ HERO BANNER ★ -->
+                <div class="hero-banner mb-10">
+                    <img src="https://picsum.photos/seed/herospotify/1200/400" alt="Featured Background">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <div class="hero-art"><img src="https://picsum.photos/seed/afterhours/360/360" alt="After Hours"></div>
+                        <div class="hero-info">
+                            <span class="hero-tag" style="background:#e13300;">FEATURED ALBUM</span>
+                            <h2 class="hero-title">After Hours</h2>
+                            <p class="hero-desc">The chart-topping album featuring Blinding Lights, Save Your Tears, and more smash hits by The Weeknd.</p>
+                            <a href="#" class="hero-play-btn"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg>Play Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ★ QUICK PICKS ★ -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-10">
+                    <a href="#" class="quick-pick"><div class="qp-img" style="background:linear-gradient(135deg,#4527a0,#7b1fa2);"></div><span class="qp-title">Liked Songs</span><div class="qp-play"><svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></a>
+                    <a href="#" class="quick-pick"><div class="qp-img"><img src="https://picsum.photos/seed/discover1/128/128" alt="Discover Weekly"></div><span class="qp-title">Discover Weekly</span><div class="qp-play"><svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></a>
+                    <a href="#" class="quick-pick"><div class="qp-img"><img src="https://picsum.photos/seed/dailym3/128/128" alt="Daily Mix 1"></div><span class="qp-title">Daily Mix 1</span><div class="qp-play"><svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></a>
+                    <a href="#" class="quick-pick"><div class="qp-img"><img src="https://picsum.photos/seed/chill4/128/128" alt="Chill Vibes"></div><span class="qp-title">Chill Vibes</span><div class="qp-play"><svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></a>
+                    <a href="#" class="quick-pick"><div class="qp-img"><img src="https://picsum.photos/seed/release2/128/128" alt="Release Radar"></div><span class="qp-title">Release Radar</span><div class="qp-play"><svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></a>
+                    <a href="#" class="quick-pick"><div class="qp-img"><img src="https://picsum.photos/seed/workout8/128/128" alt="Workout Energy"></div><span class="qp-title">Workout Energy</span><div class="qp-play"><svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></a>
+                    <a href="#" class="quick-pick hidden md:flex"><div class="qp-img"><img src="https://picsum.photos/seed/lofi9/128/128" alt="Lo-Fi Beats"></div><span class="qp-title">Lo-Fi Beats</span><div class="qp-play"><svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></a>
+                    <a href="#" class="quick-pick hidden md:flex"><div class="qp-img"><img src="https://picsum.photos/seed/indie10/128/128" alt="Indie Anthems"></div><span class="qp-title">Indie Anthems</span><div class="qp-play"><svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></a>
+                </div>
+
+                <!-- ★ YOUR TOP TRACKS ★ -->
+                <section class="mb-10">
+                    <div class="flex items-center justify-between mb-4"><h2 class="text-2xl font-bold hover:underline cursor-pointer">🎵 Your Top Tracks</h2><a href="#" class="text-xs font-bold text-sp-light-gray hover:text-white tracking-wider uppercase transition-colors">Show all</a></div>
+                    <div class="flex gap-4 overflow-x-auto pb-2 scroll-smooth snap-x snap-mandatory" style="-webkit-overflow-scrolling:touch;scrollbar-width:none;">
+                        <div class="music-card-h snap-start"><div class="mch-img"><span class="mch-rank">1</span><img src="https://picsum.photos/seed/blind20/300/300" alt="Blinding Lights"><div class="mch-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mch-title">Blinding Lights</div><div class="mch-artist">The Weeknd</div><div class="mch-dur">3:20</div></div>
+                        <div class="music-card-h snap-start"><div class="mch-img"><span class="mch-rank">2</span><img src="https://picsum.photos/seed/levit21/300/300" alt="Levitating"><div class="mch-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mch-title">Levitating</div><div class="mch-artist">Dua Lipa</div><div class="mch-dur">3:23</div></div>
+                        <div class="music-card-h snap-start"><div class="mch-img"><span class="mch-rank">3</span><img src="https://picsum.photos/seed/save22/300/300" alt="Save Your Tears"><div class="mch-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mch-title">Save Your Tears</div><div class="mch-artist">The Weeknd</div><div class="mch-dur">3:35</div></div>
+                        <div class="music-card-h snap-start"><div class="mch-img"><span class="mch-rank">4</span><img src="https://picsum.photos/seed/stay23/300/300" alt="Stay"><div class="mch-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mch-title">Stay</div><div class="mch-artist">Kid LAROI & Bieber</div><div class="mch-dur">2:21</div></div>
+                        <div class="music-card-h snap-start"><div class="mch-img"><span class="mch-rank">5</span><img src="https://picsum.photos/seed/circles24/300/300" alt="Circles"><div class="mch-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mch-title">Circles</div><div class="mch-artist">Post Malone</div><div class="mch-dur">3:35</div></div>
+                        <div class="music-card-h snap-start"><div class="mch-img"><span class="mch-rank">6</span><img src="https://picsum.photos/seed/water25/300/300" alt="Watermelon Sugar"><div class="mch-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mch-title">Watermelon Sugar</div><div class="mch-artist">Harry Styles</div><div class="mch-dur">2:54</div></div>
+                        <div class="music-card-h snap-start"><div class="mch-img"><span class="mch-rank">7</span><img src="https://picsum.photos/seed/dont26/300/300" alt="Don't Start Now"><div class="mch-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mch-title">Don't Start Now</div><div class="mch-artist">Dua Lipa</div><div class="mch-dur">3:03</div></div>
+                        <div class="music-card-h snap-start"><div class="mch-img"><span class="mch-rank">8</span><img src="https://picsum.photos/seed/asitwas27/300/300" alt="As It Was"><div class="mch-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mch-title">As It Was</div><div class="mch-artist">Harry Styles</div><div class="mch-dur">2:47</div></div>
+                    </div>
+                </section>
+
+                <!-- ★ RECENTLY PLAYED ★ -->
+                <section class="mb-10">
+                    <div class="flex items-center justify-between mb-4"><h2 class="text-2xl font-bold hover:underline cursor-pointer">Recently Played</h2><a href="#" class="text-xs font-bold text-sp-light-gray hover:text-white tracking-wider uppercase transition-colors">Show all</a></div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5">
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/afterhours/300/300" alt="After Hours"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">After Hours</div><div class="mc-desc">The Weeknd</div></a>
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/futuren30/300/300" alt="Future Nostalgia"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Future Nostalgia</div><div class="mc-desc">Dua Lipa</div></a>
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/hollyb31/300/300" alt="Hollywood's Bleeding"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Hollywood's Bleeding</div><div class="mc-desc">Post Malone</div></a>
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/midnite32/300/300" alt="Midnight Memories"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Midnight Memories</div><div class="mc-desc">Playlist • Late-night tunes</div></a>
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/scorpion33/300/300" alt="Scorpion"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Scorpion</div><div class="mc-desc">Drake</div></a>
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/dawnfm34/300/300" alt="Dawn FM"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Dawn FM</div><div class="mc-desc">The Weeknd</div></a>
+                    </div>
+                </section>
+
+                <!-- ★ BROWSE GENRE & MOOD ★ -->
+                <section class="mb-10">
+                    <div class="flex items-center justify-between mb-4"><h2 class="text-2xl font-bold hover:underline cursor-pointer">Browse by Genre & Mood</h2><a href="#" class="text-xs font-bold text-sp-light-gray hover:text-white tracking-wider uppercase transition-colors">Show all</a></div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                        <a href="#" class="genre-card" style="background:linear-gradient(135deg,#8d67ab,#b83d7e);"><span class="genre-name">Pop</span><div class="genre-art"><img src="https://picsum.photos/seed/pop40/180/180" alt="Pop"></div></a>
+                        <a href="#" class="genre-card" style="background:linear-gradient(135deg,#ba5d07,#d84000);"><span class="genre-name">Hip-Hop</span><div class="genre-art"><img src="https://picsum.photos/seed/hiphop41/180/180" alt="Hip-Hop"></div></a>
+                        <a href="#" class="genre-card" style="background:linear-gradient(135deg,#e13300,#8c1932);"><span class="genre-name">Rock</span><div class="genre-art"><img src="https://picsum.photos/seed/rock42/180/180" alt="Rock"></div></a>
+                        <a href="#" class="genre-card" style="background:linear-gradient(135deg,#503750,#8d67ab);"><span class="genre-name">R&B</span><div class="genre-art"><img src="https://picsum.photos/seed/rnb43/180/180" alt="R&B"></div></a>
+                        <a href="#" class="genre-card" style="background:linear-gradient(135deg,#0d73ec,#148a08);"><span class="genre-name">Electronic</span><div class="genre-art"><img src="https://picsum.photos/seed/electro44/180/180" alt="Electronic"></div></a>
+                        <a href="#" class="genre-card" style="background:linear-gradient(135deg,#477d95,#1e3264);"><span class="genre-name">Lo-Fi</span><div class="genre-art"><img src="https://picsum.photos/seed/lofi45/180/180" alt="Lo-Fi"></div></a>
+                        <a href="#" class="genre-card" style="background:linear-gradient(135deg,#608108,#477d95);"><span class="genre-name">Indie</span><div class="genre-art"><img src="https://picsum.photos/seed/indie46/180/180" alt="Indie"></div></a>
+                        <a href="#" class="genre-card" style="background:linear-gradient(135deg,#a56752,#ba5d07);"><span class="genre-name">Jazz</span><div class="genre-art"><img src="https://picsum.photos/seed/jazz47/180/180" alt="Jazz"></div></a>
+                        <a href="#" class="genre-card" style="background:linear-gradient(135deg,#1e3264,#503750);"><span class="genre-name">Classical</span><div class="genre-art"><img src="https://picsum.photos/seed/classic48/180/180" alt="Classical"></div></a>
+                        <a href="#" class="genre-card" style="background:linear-gradient(135deg,#509bf5,#148a08);"><span class="genre-name">Chill</span><div class="genre-art"><img src="https://picsum.photos/seed/chill49/180/180" alt="Chill"></div></a>
+                    </div>
+                </section>
+
+                <!-- ★ MADE FOR YOU ★ -->
+                <section class="mb-10">
+                    <div class="flex items-center justify-between mb-4"><h2 class="text-2xl font-bold hover:underline cursor-pointer">Made For You</h2><a href="#" class="text-xs font-bold text-sp-light-gray hover:text-white tracking-wider uppercase transition-colors">Show all</a></div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5">
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/dailym3/300/300" alt="Daily Mix 1"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Daily Mix 1</div><div class="mc-desc">The Weeknd, Drake, Post Malone</div></a>
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/dailym50/300/300" alt="Daily Mix 2"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Daily Mix 2</div><div class="mc-desc">Dua Lipa, Billie Eilish, Ariana</div></a>
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/dailym51/300/300" alt="Daily Mix 3"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Daily Mix 3</div><div class="mc-desc">Coldplay, Imagine Dragons</div></a>
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/discover1/300/300" alt="Discover Weekly"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Discover Weekly</div><div class="mc-desc">Your weekly mixtape of fresh music</div></a>
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/release2/300/300" alt="Release Radar"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Release Radar</div><div class="mc-desc">Latest from artists you follow</div></a>
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/onrepeat52/300/300" alt="On Repeat"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">On Repeat</div><div class="mc-desc">Songs you love right now</div></a>
+                    </div>
+                </section>
+
+                <!-- ★ NEW RELEASES ★ -->
+                <section class="mb-10">
+                    <div class="flex items-center justify-between mb-4"><h2 class="text-2xl font-bold hover:underline cursor-pointer">🔥 New Releases</h2><a href="#" class="text-xs font-bold text-sp-light-gray hover:text-white tracking-wider uppercase transition-colors">Show all</a></div>
+                    <div class="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory" style="-webkit-overflow-scrolling:touch;scrollbar-width:none;">
+                        <a href="#" class="nr-card snap-start"><div class="nr-img"><span class="nr-badge">New</span><img src="https://picsum.photos/seed/hurry60/420/420" alt="Hurry Up Tomorrow"><div class="nr-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="nr-info"><div class="nr-title">Hurry Up Tomorrow</div><div class="nr-artist">The Weeknd</div><div class="nr-type">Album</div></div></a>
+                        <a href="#" class="nr-card snap-start"><div class="nr-img"><span class="nr-badge">New</span><img src="https://picsum.photos/seed/radical61/420/420" alt="Radical Optimism"><div class="nr-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="nr-info"><div class="nr-title">Radical Optimism</div><div class="nr-artist">Dua Lipa</div><div class="nr-type">Album</div></div></a>
+                        <a href="#" class="nr-card snap-start"><div class="nr-img"><img src="https://picsum.photos/seed/eternal62/420/420" alt="Eternal Sunshine"><div class="nr-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="nr-info"><div class="nr-title">Eternal Sunshine</div><div class="nr-artist">Ariana Grande</div><div class="nr-type">Album</div></div></a>
+                        <a href="#" class="nr-card snap-start"><div class="nr-img"><span class="nr-badge">New</span><img src="https://picsum.photos/seed/cowboy63/420/420" alt="Cowboy Carter"><div class="nr-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="nr-info"><div class="nr-title">Cowboy Carter</div><div class="nr-artist">Beyoncé</div><div class="nr-type">Album</div></div></a>
+                        <a href="#" class="nr-card snap-start"><div class="nr-img"><img src="https://picsum.photos/seed/tortured64/420/420" alt="Tortured Poets"><div class="nr-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="nr-info"><div class="nr-title">Tortured Poets</div><div class="nr-artist">Taylor Swift</div><div class="nr-type">Album</div></div></a>
+                        <a href="#" class="nr-card snap-start"><div class="nr-img"><span class="nr-badge">New</span><img src="https://picsum.photos/seed/sweet65/420/420" alt="Short n' Sweet"><div class="nr-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="nr-info"><div class="nr-title">Short n' Sweet</div><div class="nr-artist">Sabrina Carpenter</div><div class="nr-type">Album</div></div></a>
+                        <a href="#" class="nr-card snap-start"><div class="nr-img"><span class="nr-badge">New</span><img src="https://picsum.photos/seed/gnx66/420/420" alt="GNX"><div class="nr-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="nr-info"><div class="nr-title">GNX</div><div class="nr-artist">Kendrick Lamar</div><div class="nr-type">Album</div></div></a>
+                    </div>
+                </section>
+
+                <!-- ★ POPULAR ARTISTS ★ -->
+                <section class="mb-10">
+                    <div class="flex items-center justify-between mb-4"><h2 class="text-2xl font-bold hover:underline cursor-pointer">Popular Artists</h2><a href="#" class="text-xs font-bold text-sp-light-gray hover:text-white tracking-wider uppercase transition-colors">Show all</a></div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5">
+                        <a href="#" class="music-card"><div class="mc-img artist"><img src="https://picsum.photos/seed/weeknd5/300/300" alt="The Weeknd"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">The Weeknd</div><div class="mc-desc">Artist</div></a>
+                        <a href="#" class="music-card"><div class="mc-img artist"><img src="https://picsum.photos/seed/drake6/300/300" alt="Drake"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Drake</div><div class="mc-desc">Artist</div></a>
+                        <a href="#" class="music-card"><div class="mc-img artist"><img src="https://picsum.photos/seed/taylor11/300/300" alt="Taylor Swift"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Taylor Swift</div><div class="mc-desc">Artist</div></a>
+                        <a href="#" class="music-card"><div class="mc-img artist"><img src="https://picsum.photos/seed/billie70/300/300" alt="Billie Eilish"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Billie Eilish</div><div class="mc-desc">Artist</div></a>
+                        <a href="#" class="music-card"><div class="mc-img artist"><img src="https://picsum.photos/seed/bunny71/300/300" alt="Bad Bunny"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Bad Bunny</div><div class="mc-desc">Artist</div></a>
+                        <a href="#" class="music-card"><div class="mc-img artist"><img src="https://picsum.photos/seed/ariana72/300/300" alt="Ariana Grande"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Ariana Grande</div><div class="mc-desc">Artist</div></a>
+                    </div>
+                </section>
+
+                <!-- ★ YOUR TOP MIXES ★ -->
+                <section class="mb-10">
+                    <div class="flex items-center justify-between mb-4"><h2 class="text-2xl font-bold hover:underline cursor-pointer">🎧 Your Top Mixes</h2><a href="#" class="text-xs font-bold text-sp-light-gray hover:text-white tracking-wider uppercase transition-colors">Show all</a></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <a href="#" class="mix-card"><div class="mix-img"><img src="https://picsum.photos/seed/popmix80/200/200" alt="Pop Mix"></div><div class="mix-info"><div class="mix-title">Pop Mix</div><div class="mix-desc">Dua Lipa, Harry Styles, Ariana Grande, and more</div><div class="mix-meta">50 songs • 2 hr 45 min</div></div><div class="mix-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></a>
+                        <a href="#" class="mix-card"><div class="mix-img"><img src="https://picsum.photos/seed/hiphopm81/200/200" alt="Hip-Hop Mix"></div><div class="mix-info"><div class="mix-title">Hip-Hop Mix</div><div class="mix-desc">Drake, Kendrick Lamar, Travis Scott, and more</div><div class="mix-meta">50 songs • 3 hr 12 min</div></div><div class="mix-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></a>
+                        <a href="#" class="mix-card"><div class="mix-img"><img src="https://picsum.photos/seed/chillm82/200/200" alt="Chill Mix"></div><div class="mix-info"><div class="mix-title">Chill Mix</div><div class="mix-desc">The Weeknd, Khalid, Daniel Caesar, and more</div><div class="mix-meta">50 songs • 2 hr 58 min</div></div><div class="mix-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></a>
+                        <a href="#" class="mix-card"><div class="mix-img"><img src="https://picsum.photos/seed/rockm83/200/200" alt="Rock Mix"></div><div class="mix-info"><div class="mix-title">Rock Mix</div><div class="mix-desc">Imagine Dragons, Arctic Monkeys, Foo Fighters</div><div class="mix-meta">50 songs • 3 hr 05 min</div></div><div class="mix-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></a>
+                        <a href="#" class="mix-card"><div class="mix-img"><img src="https://picsum.photos/seed/indiem84/200/200" alt="Indie Mix"></div><div class="mix-info"><div class="mix-title">Indie Mix</div><div class="mix-desc">Tame Impala, Hozier, Phoebe Bridgers, and more</div><div class="mix-meta">50 songs • 2 hr 30 min</div></div><div class="mix-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></a>
+                        <a href="#" class="mix-card"><div class="mix-img"><img src="https://picsum.photos/seed/throwm85/200/200" alt="Throwback Mix"></div><div class="mix-info"><div class="mix-title">Throwback Mix</div><div class="mix-desc">Michael Jackson, Prince, Whitney Houston</div><div class="mix-meta">50 songs • 3 hr 20 min</div></div><div class="mix-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></a>
+                    </div>
+                </section>
+
+                <!-- ★ CHART TOPPERS ★ -->
+                <section class="mb-10">
+                    <div class="flex items-center justify-between mb-4"><h2 class="text-2xl font-bold hover:underline cursor-pointer">📈 Chart Toppers</h2><a href="#" class="text-xs font-bold text-sp-light-gray hover:text-white tracking-wider uppercase transition-colors">Show all</a></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <a href="#" class="chart-row"><span class="chart-rank top3">1</span><div class="chart-img"><img src="https://picsum.photos/seed/blind20/96/96" alt="Blinding Lights"></div><div class="chart-info"><div class="chart-title">Blinding Lights</div><div class="chart-artist">The Weeknd</div></div><span class="chart-trend">▲ +12%</span><span class="chart-dur">3:20</span></a>
+                        <a href="#" class="chart-row"><span class="chart-rank top3">2</span><div class="chart-img"><img src="https://picsum.photos/seed/asitwas27/96/96" alt="As It Was"></div><div class="chart-info"><div class="chart-title">As It Was</div><div class="chart-artist">Harry Styles</div></div><span class="chart-trend">▲ +8%</span><span class="chart-dur">2:47</span></a>
+                        <a href="#" class="chart-row"><span class="chart-rank top3">3</span><div class="chart-img"><img src="https://picsum.photos/seed/levit21/96/96" alt="Levitating"></div><div class="chart-info"><div class="chart-title">Levitating</div><div class="chart-artist">Dua Lipa</div></div><span class="chart-trend">▲ +5%</span><span class="chart-dur">3:23</span></a>
+                        <a href="#" class="chart-row"><span class="chart-rank">4</span><div class="chart-img"><img src="https://picsum.photos/seed/stay23/96/96" alt="Stay"></div><div class="chart-info"><div class="chart-title">Stay</div><div class="chart-artist">Kid LAROI & J. Bieber</div></div><span class="chart-trend">▲ +3%</span><span class="chart-dur">2:21</span></a>
+                        <a href="#" class="chart-row"><span class="chart-rank">5</span><div class="chart-img"><img src="https://picsum.photos/seed/heat90/96/96" alt="Heat Waves"></div><div class="chart-info"><div class="chart-title">Heat Waves</div><div class="chart-artist">Glass Animals</div></div><span class="chart-trend">▲ +7%</span><span class="chart-dur">3:58</span></a>
+                        <a href="#" class="chart-row"><span class="chart-rank">6</span><div class="chart-img"><img src="https://picsum.photos/seed/circles24/96/96" alt="Circles"></div><div class="chart-info"><div class="chart-title">Circles</div><div class="chart-artist">Post Malone</div></div><span class="chart-trend">▲ +2%</span><span class="chart-dur">3:35</span></a>
+                        <a href="#" class="chart-row"><span class="chart-rank">7</span><div class="chart-img"><img src="https://picsum.photos/seed/good91/96/96" alt="Good 4 U"></div><div class="chart-info"><div class="chart-title">Good 4 U</div><div class="chart-artist">Olivia Rodrigo</div></div><span class="chart-trend">▲ +4%</span><span class="chart-dur">2:58</span></a>
+                        <a href="#" class="chart-row"><span class="chart-rank">8</span><div class="chart-img"><img src="https://picsum.photos/seed/save22/96/96" alt="Save Your Tears"></div><div class="chart-info"><div class="chart-title">Save Your Tears</div><div class="chart-artist">The Weeknd</div></div><span class="chart-trend">▲ +6%</span><span class="chart-dur">3:35</span></a>
+                        <a href="#" class="chart-row"><span class="chart-rank">9</span><div class="chart-img"><img src="https://picsum.photos/seed/montero92/96/96" alt="Montero"></div><div class="chart-info"><div class="chart-title">Montero</div><div class="chart-artist">Lil Nas X</div></div><span class="chart-trend">▲ +1%</span><span class="chart-dur">2:17</span></a>
+                    </div>
+                </section>
+
+                <!-- ★ TRENDING NOW ★ -->
+                <section class="mb-10">
+                    <div class="flex items-center justify-between mb-4"><h2 class="text-2xl font-bold hover:underline cursor-pointer">Trending Now</h2><a href="#" class="text-xs font-bold text-sp-light-gray hover:text-white tracking-wider uppercase transition-colors">Show all</a></div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5">
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/tophits100/300/300" alt="Today's Top Hits"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Today's Top Hits</div><div class="mc-desc">The Hottest 50 tracks!</div></a>
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/rapcaviar101/300/300" alt="RapCaviar"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">RapCaviar</div><div class="mc-desc">New from Drake, Travis Scott</div></a>
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/allout102/300/300" alt="All Out 2020s"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">All Out 2020s</div><div class="mc-desc">Biggest songs of the 2020s</div></a>
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/viral103/300/300" alt="Viral Hits"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Viral Hits</div><div class="mc-desc">Viral songs you need to hear</div></a>
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/poprising104/300/300" alt="Pop Rising"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Pop Rising</div><div class="mc-desc">Who tops the charts next?</div></a>
+                        <a href="#" class="music-card"><div class="mc-img"><img src="https://picsum.photos/seed/hotcountry105/300/300" alt="Hot Country"><div class="mc-play"><svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></div></div><div class="mc-title">Hot Country</div><div class="mc-desc">Hottest country music!</div></a>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- ========== RIGHT SIDEBAR ========== -->
+        <aside class="hidden xl:flex w-[320px] flex-shrink-0 flex-col bg-sp-dark rounded-lg m-2 ml-0 overflow-hidden">
+            <div class="p-4 flex items-center justify-between border-b border-white/5"><h3 class="font-bold text-sm">Now Playing</h3><button class="w-7 h-7 flex items-center justify-center rounded-full hover:bg-sp-gray text-sp-light-gray hover:text-white transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M2.47 2.47a.75.75 0 0 1 1.06 0L8 6.94l4.47-4.47a.75.75 0 1 1 1.06 1.06L9.06 8l4.47 4.47a.75.75 0 1 1-1.06 1.06L8 9.06l-4.47 4.47a.75.75 0 0 1-1.06-1.06L6.94 8 2.47 3.53a.75.75 0 0 1 0-1.06z"/></svg></button></div>
+            <div class="flex-1 overflow-y-auto custom-scrollbar p-4">
+                <div class="np-art"><img src="https://picsum.photos/seed/blind20/600/600" alt="Blinding Lights"></div>
+                <div class="mb-4">
+                    <h4 class="font-bold text-lg truncate">Blinding Lights</h4>
+                    <p class="text-sm text-sp-light-gray truncate hover:text-white hover:underline cursor-pointer transition-colors">The Weeknd</p>
+                </div>
+                <div class="bg-sp-gray/50 rounded-lg p-4 mb-4">
+                    <h5 class="text-xs font-bold uppercase tracking-wider text-sp-light-gray mb-3">About the artist</h5>
+                    <div class="np-artist-img"><img src="https://picsum.photos/seed/weeknd5/600/256" alt="The Weeknd"></div>
+                    <p class="text-xs text-sp-light-gray leading-relaxed">Abel Makkonen Tesfaye, known professionally as The Weeknd, is a Canadian singer, songwriter, and record producer.</p>
+                    <div class="mt-3 flex items-center gap-2 text-xs text-sp-light-gray"><span class="font-semibold text-white">82.5M</span> monthly listeners</div>
+                </div>
+                <div class="bg-sp-gray/50 rounded-lg p-4">
+                    <h5 class="text-xs font-bold uppercase tracking-wider text-sp-light-gray mb-3">Credits</h5>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between"><span class="text-sp-light-gray">Performed by</span><span class="font-medium hover:underline cursor-pointer">The Weeknd</span></div>
+                        <div class="flex justify-between"><span class="text-sp-light-gray">Produced by</span><span class="font-medium hover:underline cursor-pointer">Max Martin</span></div>
+                        <div class="flex justify-between"><span class="text-sp-light-gray">Written by</span><span class="font-medium hover:underline cursor-pointer">Abel Tesfaye</span></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- ==================== BOTTOM PLAYER ==================== -->
+    <footer class="h-[90px] bg-black px-4 flex items-center justify-between border-t border-white/5 z-50 flex-shrink-0">
+        <div class="flex items-center gap-3 w-[30%] min-w-[180px]">
+            <div class="player-art cursor-pointer"><img src="https://picsum.photos/seed/blind20/112/112" alt="Blinding Lights"></div>
+            <div class="min-w-0">
+                <p class="text-sm font-medium truncate hover:underline cursor-pointer">Blinding Lights</p>
+                <p class="text-xs text-sp-light-gray truncate hover:text-white hover:underline cursor-pointer transition-colors">The Weeknd</p>
+            </div>
+            <button class="flex-shrink-0 text-sp-light-gray hover:text-sp-green transition-colors ml-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M1.69 2A4.582 4.582 0 0 1 8 2.023 4.583 4.583 0 0 1 11.88.817h.002a4.618 4.618 0 0 1 3.782 3.65v.003a4.543 4.543 0 0 1-1.011 3.84L9.35 14.629a1.765 1.765 0 0 1-2.093.464 1.762 1.762 0 0 1-.605-.463L1.348 8.309A4.582 4.582 0 0 1 1.689 2zm3.158.252A3.082 3.082 0 0 0 2.49 7.337l.005.005L7.8 13.664a.264.264 0 0 0 .311.069.262.262 0 0 0 .09-.069l5.312-6.33a3.043 3.043 0 0 0 .68-2.573 3.118 3.118 0 0 0-2.551-2.463 3.079 3.079 0 0 0-2.612.816l-.007.007a1.501 1.501 0 0 1-2.045 0l-.009-.008a3.082 3.082 0 0 0-2.121-.861z"/></svg></button>
+        </div>
+        <div class="flex flex-col items-center w-[40%] max-w-[720px]">
+            <div class="flex items-center gap-4 mb-2">
+                <button class="text-sp-light-gray hover:text-white transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M13.151.922a.75.75 0 1 0-1.06 1.06L13.109 3H11.16a3.75 3.75 0 0 0-2.873 1.34l-6.173 7.356A2.25 2.25 0 0 1 .39 12.5H0V14h.391a3.75 3.75 0 0 0 2.873-1.34l6.173-7.356a2.25 2.25 0 0 1 1.724-.804h1.947l-1.017 1.018a.75.75 0 0 0 1.06 1.06l2.306-2.306a.75.75 0 0 0 0-1.06L13.15.922zM.391 3.5H0V2h.391c1.109 0 2.16.49 2.873 1.34L4.89 5.277l-.979 1.167-1.796-2.14A2.25 2.25 0 0 0 .39 3.5z"/><path d="m7.5 10.723.98-1.167 1.796 2.14a2.25 2.25 0 0 0 1.724.804h1.947l-1.017-1.018a.75.75 0 1 1 1.06-1.06l2.306 2.306a.75.75 0 0 1 0 1.06l-2.306 2.306a.75.75 0 1 1-1.06-1.06L14.109 14H12.16a3.75 3.75 0 0 1-2.873-1.34l-1.787-2.13z"/></svg></button>
+                <button class="text-sp-light-gray hover:text-white transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16"><path d="M3.3 1a.7.7 0 0 1 .7.7v5.15l9.95-5.744a.7.7 0 0 1 1.05.606v12.575a.7.7 0 0 1-1.05.607L4 9.149V14.3a.7.7 0 0 1-.7.7H2.7a.7.7 0 0 1-.7-.7V1.7a.7.7 0 0 1 .7-.7h.6z"/></svg></button>
+                <button class="w-9 h-9 rounded-full bg-white flex items-center justify-center hover:scale-110 transition-all duration-200 shadow-md"><svg class="w-5 h-5 text-black ml-0.5" fill="currentColor" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg></button>
+                <button class="text-sp-light-gray hover:text-white transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16"><path d="M12.7 1a.7.7 0 0 0-.7.7v5.15L2.05 1.107A.7.7 0 0 0 1 1.712v12.575a.7.7 0 0 0 1.05.607L12 9.149V14.3a.7.7 0 0 0 .7.7h.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-.6z"/></svg></button>
+                <button class="text-sp-light-gray hover:text-white transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M0 4.75A3.75 3.75 0 0 1 3.75 1h8.5A3.75 3.75 0 0 1 16 4.75v5a3.75 3.75 0 0 1-3.75 3.75H9.81l1.018 1.018a.75.75 0 1 1-1.06 1.06L7.44 13.28a.75.75 0 0 1 0-1.06l2.328-2.328a.75.75 0 1 1 1.06 1.06L9.811 12h2.439a2.25 2.25 0 0 0 2.25-2.25v-5a2.25 2.25 0 0 0-2.25-2.25h-8.5A2.25 2.25 0 0 0 1.5 4.75v5A2.25 2.25 0 0 0 3.75 12H5v1.5H3.75A3.75 3.75 0 0 1 0 9.75v-5z"/></svg></button>
+            </div>
+            <div class="flex items-center gap-2 w-full">
+                <span class="text-[11px] text-sp-light-gray w-10 text-right" style="font-variant-numeric:tabular-nums;">1:23</span>
+                <div class="flex-1 h-1 bg-white/20 rounded-full cursor-pointer group relative"><div class="h-full bg-white rounded-full relative group-hover:bg-sp-green transition-colors" style="width:38%;"><div class="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-md"></div></div></div>
+                <span class="text-[11px] text-sp-light-gray w-10" style="font-variant-numeric:tabular-nums;">3:20</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-2 w-[30%] justify-end">
+            <button class="text-sp-light-gray hover:text-white transition-colors p-2 hidden sm:block"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M11.196 8 6 5v6l5.196-3z"/><path d="M1 1h14a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm0 1v12h14V2H1z"/></svg></button>
+            <button class="text-sp-light-gray hover:text-white transition-colors p-2 hidden sm:block"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M13.426 2.574a2.831 2.831 0 0 0-4.797 1.55l3.247 3.247a2.831 2.831 0 0 0 1.55-4.797zM10.5 8.118l-2.619-2.62A63.088 63.088 0 0 1 1.172 9.7a.25.25 0 0 0-.172.237v.884c0 .088.044.17.121.216l.457.274a.25.25 0 0 0 .253-.009l.727-.458a.25.25 0 0 1 .257-.003l1.204.7a.25.25 0 0 0 .255-.002l.78-.476a.25.25 0 0 1 .257-.002l1.063.627a.25.25 0 0 0 .25.002l.972-.572a.25.25 0 0 1 .255.002l.702.406a.25.25 0 0 0 .259-.003l.671-.425a.25.25 0 0 1 .255 0l.553.345a.25.25 0 0 0 .26-.002l.521-.327a.25.25 0 0 1 .254 0l.534.327a.25.25 0 0 0 .255-.001l.47-.3a.25.25 0 0 0 .12-.214V9.937a.25.25 0 0 0-.172-.236 63.29 63.29 0 0 1-6.33-1.583z"/></svg></button>
+            <button class="text-sp-light-gray hover:text-white transition-colors p-2 hidden sm:block"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M15 15H1v-1.5h14V15zm0-4.5H1V9h14v1.5zm-14-7A2.5 2.5 0 0 1 3.5 1h9a2.5 2.5 0 0 1 0 5h-9A2.5 2.5 0 0 1 1 3.5zm2.5-1a1 1 0 0 0 0 2h9a1 1 0 1 0 0-2h-9z"/></svg></button>
+            <div class="flex items-center gap-1 ml-1">
+                <button class="text-sp-light-gray hover:text-white transition-colors p-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M9.741.85a.75.75 0 0 1 .375.65v13a.75.75 0 0 1-1.125.65l-6.925-4a3.642 3.642 0 0 1-1.33-4.967 3.639 3.639 0 0 1 1.33-1.332l6.925-4a.75.75 0 0 1 .75 0zm-6.924 5.3a2.139 2.139 0 0 0 0 3.7l5.8 3.35V2.8l-5.8 3.35zm8.683 4.29V5.56a2.75 2.75 0 0 1 0 4.88z"/><path d="M11.5 13.614a5.752 5.752 0 0 0 0-11.228v1.55a4.252 4.252 0 0 1 0 8.127v1.55z"/></svg></button>
+                <div class="w-[93px] h-1 bg-white/20 rounded-full cursor-pointer group relative hidden sm:block"><div class="h-full bg-white rounded-full relative group-hover:bg-sp-green transition-colors" style="width:70%;"><div class="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-md"></div></div></div>
+            </div>
+            <button class="text-sp-light-gray hover:text-white transition-colors p-2 ml-1 hidden sm:block"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M6.53 9.47a.75.75 0 0 1 0 1.06l-2.72 2.72h1.018a.75.75 0 0 1 0 1.5H1.25v-3.579a.75.75 0 0 1 1.5 0v1.018l2.72-2.72a.75.75 0 0 1 1.06 0zm2.94-2.94a.75.75 0 0 1 0-1.06l2.72-2.72h-1.018a.75.75 0 1 1 0-1.5h3.578v3.579a.75.75 0 0 1-1.5 0V3.811l-2.72 2.72a.75.75 0 0 1-1.06 0z"/></svg></button>
+        </div>
+    </footer>
+</body>
+</html>
